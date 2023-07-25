@@ -13,8 +13,8 @@
     <h2 id="acertijo_titulo"></h2>
     <p id="codigo_con_errores">Encuentra los errores en el siguiente código:</p>
     <pre id="codigo"></pre>
-    <p><button id="boton_equipo1" onclick="adivinarErrores(1)">Turno Equipo 1: Encontré un error</button></p>
-    <p><button id="boton_equipo2" onclick="adivinarErrores(2)" style="display: none;">Turno Equipo 2: Encontré un error</button></p>
+    <p><button id="boton_equipo1" onclick="adivinarErrores(1)">Equipo 1: Encontré un error</button></p>
+    <p><button id="boton_equipo2" onclick="adivinarErrores(2)" style="display: none;">Equipo 2: Encontré un error</button></p>
     <p id="mensaje"></p>
     <audio id="musica" src="GhostBusters-theme-song.mp3" loop autoplay></audio>
     <script>
@@ -24,16 +24,16 @@
         
         let codigoConErrores = [
             {
-                titulo: "ACERTIJO 1",
+                titulo: "EMPEZAMOS...1",
                 codigo: `
 function sum(a, b) {
-    return a + b;
+    return a - b;
 }
                 `,
                 errores: 1
             },
             {
-                titulo: "ACERTIJO 2",
+                titulo: "SEGUIMOS CON EL 2",
                 codigo: `
 function factorial(n) {
     if (n === 0) {
@@ -44,13 +44,13 @@ function factorial(n) {
     }
 }
                 `,
-                errores: 2
+                errores: 1
             },
             {
-                titulo: "ACERTIJO 3",
+                titulo: "CONTINÚA, ya vamos con el 3...",
                 codigo: `
 function imprimirTabla(numero) {
-    for (let i = 1; i <= 10; i++) {
+    for (let N = 1; i <= 10; i++) {
         console.log(numero + " x " + i + " = " + numero * i);
     }
 }
@@ -58,7 +58,7 @@ function imprimirTabla(numero) {
                 errores: 1
             },
             {
-                titulo: "ACERTIJO 4",
+                titulo: "El 4 ES PAN COMIDO",
                 codigo: `
 function esPrimo(num) {
     for (let i = 2; i < num; i++) {
@@ -72,7 +72,7 @@ function esPrimo(num) {
                 errores: 2
             },
             {
-                titulo: "ACERTIJO 5",
+                titulo: "YA LA ÚLTIMA!",
                 codigo: `
 function sumaLista(lista) {
     let suma = 0;
@@ -82,7 +82,7 @@ function sumaLista(lista) {
     return suma;
 }
                 `,
-                errores: 1
+                errores: 0
             }
             // Puedes agregar más ejemplos de códigos con errores aquí
         ];
