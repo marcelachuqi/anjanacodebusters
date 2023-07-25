@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anjana CodeBusters - Juego de Encontrar Errores</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+    <h1>Anjana CodeBusters - Juego de Encontrar Errores</h1>
+    <div id="equipo1_resultados"></div>
+    <div id="equipo2_resultados"></div>
+    <div id="resultado_final"></div>
+
+    <h2 id="acertijo_titulo"></h2>
+    <p id="codigo_con_errores">Encuentra los errores en el siguiente código:</p>
+    <pre id="codigo"></pre>
+    <p><button id="boton_equipo1" onclick="adivinarErrores(1)">Turno Equipo 1: Encontré un error</button></p>
+    <p><button id="boton_equipo2" onclick="adivinarErrores(2)" style="display: none;">Turno Equipo 2: Encontré un error</button></p>
+    <p id="mensaje"></p>
+    <audio id="musica" src="GhostBusters-theme-song.mp3" loop autoplay></audio>
+    <script>
+         document.addEventListener("click", () => {
+            document.getElementById("musica").play();
+        });
+        
+        let codigoConErrores = [
+            {
+                titulo: "ACERTIJO 1",
+                codigo: `
+function sum(a, b) {
+    return a + b;
+}
+                `,
+                errores: 1
+            },
+            {
+                titulo: "ACERTIJO 2",
+                codigo: `
+function factorial(n) {
+    if (n === 0) {
+        return 1;
+    }
+    else {
+        return n * factorial(n-1);
+    }
+}
+                `,
+                errores: 2
+            },
+            {
+                titulo: "ACERTIJO 3",
+                codigo: `
+function imprimirTabla(numero) {
+    for (let i = 1; i <= 10; i++) {
+        console.log(numero + " x " + i + " = " + numero * i);
+    }
+}
+                `,
+                errores: 1
+            },
+            {
+                titulo: "ACERTIJO 4",
+                codigo: `
+function esPrimo(num) {
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
+}
+                `,
+                errores: 2
+            },
+            {
+                titulo: "ACERTIJO 5",
+                codigo: `
+function sumaLista(lista) {
+    let suma = 0;
+    for (let i = 0; i < lista.length; i++) {
+        suma += lista[i];
+    }
+    return suma;
+}
+                `,
+                errores: 1
+            }
+            // Puedes agregar más ejemplos de códigos con errores aquí
+        ];
+
+        let equipo1Errores = [];
+        let equipo2Errores = [];
+        let equipo1Respuestas = [];
+        let equipo2Respuestas = [];
+        let ronda = 0;
+
+        function mostrarCodigoConErrores() {
+            if (ronda === 5) {
+                // Mostrar los resultados finales
+                let resultadoFinal = "<h2>Resultados:</h2>";
+
+                let equipo1ResultadoHTML = "<h3>Equipo 1:</h3>";
+                equipo1Errores.forEach((errores, index) => {
+                    let acertijo = codigoConErrores[index];
+                    let erroresReales = acertijo.errores;
+                    equipo1ResultadoHTML += `<p>${acertijo.titulo}:`;
+                    equipo1ResultadoHTML += ` Errores encontrados: ${errores}, Errores reales: ${erroresReales}</p>`;
+                });
+
+                let equipo2ResultadoHTML = "<h3>Equipo 2:</h3>";
+                equipo2Errores.forEach((errores, index) => {
+                    let acertijo = codigoConErrores[index];
+                    let erroresReales = acertijo.errores;
+                    equipo2ResultadoHTML += `<p>${acertijo.titulo}:`;
+                    equipo2ResultadoHTML += ` Errores encontrados: ${errores}, Errores reales: ${erroresReales}</p>`;
+                });
+
+                resultadoFinal += equipo1ResultadoHTML + equipo2ResultadoHTML;
+                document.getElementById("resultado_final").innerHTML = resultadoFinal;
+
+                let equipoGanador = "Ninguno";
+                if (equipo1Respuestas.includes(codigoConErrores[0].errores)) {
+                    equipoGanador = "Equipo 1";
+                } else if (equipo2Respuestas.includes(codigoConErrores[0].errores)) {
+                    equipoGanador = "Equipo 2";
+                }
+
+                if (equipoGanador !== "Ninguno") {
+                    document.getElementById("resultado_final").innerHTML += `<p><b>Equipo ganador: ${equipoGanador}</b></p>`;
+                } else {
+                    document.getElementById("resultado_final").innerHTML += `<p><b>No hay ganador</b></p>`;
+                }
+
+                document.getElementById("acertijo_titulo").style.display = "none";
+                document.getElementById("codigo_con_errores").style.display = "none";
+                document.getElementById("codigo").style.display = "none";
+                document.getElementById("boton_equipo1").style.display = "none";
+                document.getElementById("boton_equipo2").style.display = "none";
+                document.getElementById("mensaje").style.display = "none";
+                return;
+            }
+
+            let acertijo = codigoConErrores[ronda];
+            document.getElementById("acertijo_titulo").textContent = acertijo.titulo;
+            document.getElementById("codigo").textContent = acertijo.codigo;
+            document.getElementById("mensaje").textContent = `Ronda ${ronda + 1}: ¡Es el turno de ambos equipos!`;
+            document.getElementById("boton_equipo1").style.display = "block";
+            document.getElementById("boton_equipo2").style.display = "block";
+        }
+
+        function adivinarErrores(equipo) {
+            let acertijoActual = codigoConErrores[ronda];
+            let errores = parseInt(prompt("¿Cuántos errores has encontrado?"));
+            if (!isNaN(errores) && errores >= 0) {
+                if (equipo === 1) {
+                    equipo1Errores.push(errores);
+                    equipo1Respuestas.push(acertijoActual.errores);
+                } else {
+                    equipo2Errores.push(errores);
+                    equipo2Respuestas.push(acertijoActual.errores);
+                }
+
+                document.getElementById("boton_equipo1").style.display = "none";
+                document.getElementById("boton_equipo2").style.display = "none";
+                ronda++;
+                mostrarCodigoConErrores();
+            }
+        }
+
+        mostrarCodigoConErrores();
+    </script>
+</body>
+</html>

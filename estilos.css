@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodeBusters - Juego de Encontrar Errores</title>
+    <style>
+        body {
+            background-color: #f0f9f4;
+            font-family: Montserrat, sans-serif;
+            font-size: 17px;
+        }
+        h1, h2, h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            font-family: inherit;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>CodeBusters - Juego de Encontrar Errores</h1>
+    <div id="equipo1_resultados"></div>
+    <div id="equipo2_resultados"></div>
+    <div id="resultado_final"></div>
+
+    <h2 id="acertijo_titulo"></h2>
+    <p id="codigo_con_errores">Encuentra los errores en el siguiente código:</p>
+    <pre id="codigo"></pre>
+    <p><button id="boton_equipo1" onclick="adivinarErrores(1)">Turno Equipo 1: Encontré un error</button></p>
+    <p><button id="boton_equipo2" onclick="adivinarErrores(2)" style="display: none;">Turno Equipo 2: Encontré un error</button></p>
+    <p id="mensaje"></p>
+
+    <script>
+        // (Aquí va todo el código que ya te proporcioné)
+    </script>
+</body>
+</html>
