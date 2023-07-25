@@ -3,13 +3,13 @@
 RESPUESTAS CORRECTAS:
 
 
-function sum(a, b) {
+1) function sum(a, b) {
     return a + b;
 }
 
 
 
-function factorial(n) {
+2) function factorial(n) {
     if (n === 0 || n === 1) {
         return 1;
     } else {
@@ -18,14 +18,14 @@ function factorial(n) {
 }
 
 
-function imprimirTabla(numero) {
+3) function imprimirTabla(numero) {
     for (let i = 1; i <= 10; i++) {
         console.log(numero + " x " + i + " = " + numero * i);
     }
 }
 
 
-function esPrimo(num) {
+4) function esPrimo(num) {
     if (num < 2) {
         return false;
     }
@@ -39,7 +39,7 @@ function esPrimo(num) {
 
 
 
-function sumaLista(lista) {
+5) function sumaLista(lista) {
     let suma = 0;
     for (let i = 0; i < lista.length; i++) {
         suma += lista[i];
