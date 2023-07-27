@@ -46,3 +46,23 @@ RESPUESTAS CORRECTAS:
     }
     return suma;
 }
+
+6) function invertirCadena(cadena) {
+    return cadena.split('').reverse().join('');
+}
+
+
+7) function numeroMisterioso(numero) {
+    return numero * 2 + 5 / (numero - 1);
+}
+
+8) function estaOrdenado(arreglo) {
+    for (let i = 0; i < arreglo.length - 1; i++) {
+        if (arreglo[i] > arreglo[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
