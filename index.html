@@ -3,9 +3,13 @@
 <head>
     <title>Anjana CodeBusters - Juego de Encontrar Errores</title>
     <link rel="stylesheet" type="text/css" href="estilos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Anjana CodeBusters - Juego de Encontrar Errores</h1>
+    <h1 id="title_anjana">Anjana CodeBusters - Juego de Encontrar Errores</h1>
     <div id="equipo1_resultados"></div>
     <div id="equipo2_resultados"></div>
     <div id="resultado_final"></div>
@@ -24,7 +28,7 @@
         
         let codigoConErrores = [
             {
-                titulo: "EMPEZAMOS...1",
+                titulo: "#1 SUMA",
                 codigo: `
 function sum(a, b) {
     return a - b;
@@ -33,7 +37,7 @@ function sum(a, b) {
                 errores: 1
             },
             {
-                titulo: "SEGUIMOS CON EL 2",
+                titulo: "#2 FACTORIAL",
                 codigo: `
 function factorial(n) {
     if (n === 0) {
@@ -47,7 +51,7 @@ function factorial(n) {
                 errores: 1
             },
             {
-                titulo: "CONTINÚA, ya vamos con el 3...",
+                titulo: "#3 IMPRIMIR TABLA",
                 codigo: `
 function imprimirTabla(numero) {
     for (let N = 1; i <= 10; i++) {
@@ -58,7 +62,7 @@ function imprimirTabla(numero) {
                 errores: 1
             },
             {
-                titulo: "El 4 ES PAN COMIDO",
+                titulo: "#4 NUM. PRIMO (que no es = al hijo de tu tío)",
                 codigo: `
 function esPrimo(num) {
     for (let i = 2; i < num; i++) {
@@ -72,7 +76,7 @@ function esPrimo(num) {
                 errores: 2
             },
             {
-                titulo: "YA LA ÚLTIMA!",
+                titulo: "#5 SUMAR LISTAS",
                 codigo: `
 function sumaLista(lista) {
     let suma = 0;
@@ -83,7 +87,40 @@ function sumaLista(lista) {
 }
                 `,
                 errores: 0
-            }
+            },
+
+            {
+    titulo: "#6 INVERTIR CADENA",
+    codigo: `
+    function invertirCadena(cadena) {
+    return cadena.split('').reverse().joinT('i');
+}
+    `,
+    errores: 2
+},
+{
+    titulo: "#7 NÚMERO MISTERIOSO",
+    codigo: `
+function numeroMisterioso(nÚmero) {
+    return numero * 2 + 5 / numero - 1;
+}
+    `,
+    errores: 2
+},
+{
+    titulo: "#8 ARREGLO DESORDENADO",
+    codigo: `
+function estaOrdenado(arreglo) {
+    for (let i = 0; i < arreglo.length; i++) {
+        if (arreglo[i] > arreglo[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+    `,
+    errores: 1
+},
             // Puedes agregar más ejemplos de códigos con errores aquí
         ];
 
