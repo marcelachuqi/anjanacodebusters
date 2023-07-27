@@ -126,45 +126,48 @@ function estaOrdenado(arreglo) {
 
         let equipo1Errores = [];
         let equipo2Errores = [];
-        let equipo1Respuestas = [];
-        let equipo2Respuestas = [];
+        let equipo1Aciertos = [];
+        let equipo2Aciertos = [];
         let ronda = 0;
 
         function mostrarCodigoConErrores() {
-            if (ronda === 5) {
+            if (ronda === codigoConErrores.length) {
                 // Mostrar los resultados finales
                 let resultadoFinal = "<h2>Resultados:</h2>";
 
+                let equipo1Gana = equipo1Aciertos.some((acierto, index) => acierto === codigoConErrores[index].errores);
+                let equipo2Gana = equipo2Aciertos.some((acierto, index) => acierto === codigoConErrores[index].errores);
+
                 let equipo1ResultadoHTML = "<h3>Equipo 1:</h3>";
-                equipo1Errores.forEach((errores, index) => {
+                equipo1Aciertos.forEach((aciertos, index) => {
                     let acertijo = codigoConErrores[index];
-                    let erroresReales = acertijo.errores;
                     equipo1ResultadoHTML += `<p>${acertijo.titulo}:`;
-                    equipo1ResultadoHTML += ` Errores encontrados: ${errores}, Errores reales: ${erroresReales}</p>`;
+                    equipo1ResultadoHTML += ` Aciertos: ${aciertos}, Errores reales: ${acertijo.errores}</p>`;
                 });
 
                 let equipo2ResultadoHTML = "<h3>Equipo 2:</h3>";
-                equipo2Errores.forEach((errores, index) => {
+                equipo2Aciertos.forEach((aciertos, index) => {
                     let acertijo = codigoConErrores[index];
-                    let erroresReales = acertijo.errores;
                     equipo2ResultadoHTML += `<p>${acertijo.titulo}:`;
-                    equipo2ResultadoHTML += ` Errores encontrados: ${errores}, Errores reales: ${erroresReales}</p>`;
+                    equipo2ResultadoHTML += ` Aciertos: ${aciertos}, Errores reales: ${acertijo.errores}</p>`;
                 });
 
                 resultadoFinal += equipo1ResultadoHTML + equipo2ResultadoHTML;
                 document.getElementById("resultado_final").innerHTML = resultadoFinal;
 
                 let equipoGanador = "Ninguno";
-                if (equipo1Respuestas.includes(codigoConErrores[0].errores)) {
+                if (equipo1Gana && equipo2Gana) {
+                    equipoGanador = "Ambos equipos";
+                } else if (equipo1Gana) {
                     equipoGanador = "Equipo 1";
-                } else if (equipo2Respuestas.includes(codigoConErrores[0].errores)) {
+                } else if (equipo2Gana) {
                     equipoGanador = "Equipo 2";
                 }
 
                 if (equipoGanador !== "Ninguno") {
-                    document.getElementById("resultado_final").innerHTML += `<p><b>Equipo ganador: ${equipoGanador}</b></p>`;
+                    document.getElementById("resultado_final").innerHTML += `<p><b>Tenemos equipo ganador!: ${equipoGanador}</b></p>`;
                 } else {
-                    document.getElementById("resultado_final").innerHTML += `<p><b>No hay ganador</b></p>`;
+                    document.getElementById("resultado_final").innerHTML += `<p><b>Buh! No han acertado :( </b></p>`;
                 }
 
                 document.getElementById("acertijo_titulo").style.display = "none";
@@ -186,14 +189,12 @@ function estaOrdenado(arreglo) {
 
         function adivinarErrores(equipo) {
             let acertijoActual = codigoConErrores[ronda];
-            let errores = parseInt(prompt("¿Cuántos errores has encontrado?"));
-            if (!isNaN(errores) && errores >= 0) {
+            let aciertos = parseInt(prompt("¿Cuántos errores has encontrado?"));
+            if (!isNaN(aciertos) && aciertos >= 0) {
                 if (equipo === 1) {
-                    equipo1Errores.push(errores);
-                    equipo1Respuestas.push(acertijoActual.errores);
+                    equipo1Aciertos.push(aciertos);
                 } else {
-                    equipo2Errores.push(errores);
-                    equipo2Respuestas.push(acertijoActual.errores);
+                    equipo2Aciertos.push(aciertos);
                 }
 
                 document.getElementById("boton_equipo1").style.display = "none";
