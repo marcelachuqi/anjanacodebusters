@@ -56,7 +56,7 @@ RESPUESTAS CORRECTAS:
     return numero * 2 + 5 / (numero - 1);
 }
 
-8)function estaOrdenado(arreglo) {
+8) function estaOrdenado(arreglo) {
     for (let i = 0; i < arreglo.length - 1; i++) {
         if (arreglo[i] > arreglo[i + 1]) {
             return false;
