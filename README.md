@@ -48,12 +48,9 @@ RESPUESTAS CORRECTAS:
 }
 
 6) function invertirCadena(cadena) {
-    let resultado = "";
-    for (let i = cadena.length - 1; i >= 0; i--) {
-        resultado += cadena[i];
-    }
-    return resultado;
+    return cadena.split('').reverse().join('');
 }
+
 
 7) function numeroMisterioso(numero) {
     return numero * 2 + 5 / (numero - 1);
